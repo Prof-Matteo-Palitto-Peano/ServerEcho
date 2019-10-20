@@ -38,9 +38,9 @@ public class UDPClientSocket {
         InetAddress address = InetAddress.getByName(host);
 
         //verifico che il socket non sia chiuso
-        if (socket.isClosed()) {
-            throw new IOException();
-        }
+//        if (socket.isClosed()) {
+//            throw new IOException();
+//        }
         //Trasformo in array di byte la stringa che voglio inviare
         buffer = request.getBytes("UTF-8");
 

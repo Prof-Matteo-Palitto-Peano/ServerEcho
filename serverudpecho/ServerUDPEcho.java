@@ -25,7 +25,7 @@ public class ServerUDPEcho {
         try {
             
             // TODO code application logic here
-            UDPEcho echoServer= new UDPEcho(7);
+            UDPEcho echoServer= new UDPEcho(1077);
             thread= new Thread(echoServer);
             //echoServer.start();
             thread.start();
