@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientudp;
+package client2udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -17,13 +17,15 @@ import java.net.UnknownHostException;
  *
  * @author pc15
  */
+
+
 public class UDPClientSocket {
 
     private DatagramSocket socket;
 
     public UDPClientSocket() throws SocketException {
         socket = new DatagramSocket();
-        socket.setSoTimeout(1000);
+        //socket.setSoTimeout(1000);
     }
 
     public void close_socket() {

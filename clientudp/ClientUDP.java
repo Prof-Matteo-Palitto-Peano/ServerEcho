@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientudp;
+package client2udp;
 
+import clientudp.*;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,23 +27,27 @@ public class ClientUDP {
         int UDP_port;
         String frase, answer;
         UDPClientSocket client;
-        
+
         IP_address="127.0.0.1";
         UDP_port=1077;
         
-        Scanner tastiera = new Scanner(System.in);
+        KeyboardInput keyInput= new KeyboardInput(IP_address, UDP_port);
+
+        // Richiedo utente di inserire messaggio da inviare chat
+        Thread inputUtente;
+        inputUtente = new Thread(keyInput);
+        inputUtente.start();
+                
         client = new UDPClientSocket();
 
+        // Aspetto che l'utente esca prima di chiudere il socket
+        try {
+            inputUtente.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ClientUDP.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        do {
-            System.out.print("client 2: ");
-            frase = tastiera.nextLine();
-                
-            answer = client.sendAndRecive(frase, IP_address, UDP_port);
-            System.out.println("echo da server: " + answer);
-            //client.close_socket();
-        
-            } while (frase.compareTo("quit") != 0);
+        client.close_socket();
+
     }
-    
 }
